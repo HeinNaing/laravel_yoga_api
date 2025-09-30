@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Helpers\ApiResponse;
+use App\Http\Resources\SubscriptionResource;
+use App\Http\Resources\SubscriptionUserResource;
 use App\Models\Subscription;
 use App\Models\SubscriptionUser;
 use App\Models\User;
@@ -19,7 +21,7 @@ class SubscriptionController extends Controller
     public function index()
     {
         $subscriptions = Subscription::get();
-        return $this->successResponse('Subscriptions retrieved successfully', $subscriptions, 200);
+        return $this->successResponse('Subscriptions retrieved successfully', SubscriptionResource::collection($subscriptions), 200);
     }
 
     /**
@@ -49,8 +51,8 @@ class SubscriptionController extends Controller
                 'duration' => $request->duration
             ]);
 
-            return $this->successResponse('Subscription created successfully', $subscription, 201);
-
+            return $this->successResponse('Subscription created successfully', SubscriptionResource::collection($subscription), 201);
+            
         } catch (\Exception $e) {
             return $this->errorResponse('Subscription creation failed:'. $e->getMessage(), 500);
         }
@@ -86,7 +88,7 @@ class SubscriptionController extends Controller
             $subscription = Subscription::findOrFail($id);
             $subscription->update($request->only(['name', 'description', 'price', 'lesson_type_id', 'duration']));
 
-            return $this->successResponse('Subscription updated successfully', $subscription, 200);
+            return $this->successResponse('Subscription updated successfully', SubscriptionResource::collection($subscription), 200);
 
         } catch (\Exception $e) {
             return $this->errorResponse('Subscription update failed: '. $e->getMessage(), 500);
@@ -102,7 +104,7 @@ class SubscriptionController extends Controller
             $subscription = Subscription::findOrFail($id);
             $subscription->delete();
 
-            return $this->successResponse('Subscription deleted successfully', $subscription, 200);
+            return $this->successResponse('Subscription deleted successfully', SubscriptionResource::collection($subscription), 200);
 
         } catch (\Exception $e) {
             return $this->errorResponse('Subscription delete failed: '. $e->getMessage(), 500);
@@ -127,8 +129,8 @@ class SubscriptionController extends Controller
             $user->subscriptions()->attach($subscription->id);
 
             return $this->successResponse('Subscription attached successfully', [
-                'user_id' => $user->id,
-                'subscription_id' => $subscription->id
+                'userId' => $user->id,
+                'subscriptionId' => $subscription->id
             ], 201);
 
         } catch (\Exception $e) {
@@ -141,7 +143,7 @@ class SubscriptionController extends Controller
         try {
             $subscription = SubscriptionUser::where('user_id', $id)->get();
             
-            return $this->successResponse('Subscriptions retrieved successfully', $subscription, 200);
+            return $this->successResponse('Subscriptions retrieved successfully', SubscriptionUserResource::collection($subscription), 200);
 
         } catch (\Exception $e) {
             return $this->errorResponse('Subscription retrieved failed: ' . $e->getMessage(), 500);
