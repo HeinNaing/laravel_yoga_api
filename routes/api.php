@@ -1,5 +1,5 @@
 <?php
-
+    
 use App\Http\Controllers\Dashboard\PaymentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -35,19 +35,23 @@ Route::prefix('v1/')->group(function () {
 
         //testimonials route
         Route::apiResource('/testimonials', TestimonialController::class);
-
+      
+        //subscription
+        Route::resource('subscriptions', SubscriptionController::class);
     });
 
     //Trainer
     Route::middleware(['auth:sanctum', 'trainerMiddleware'])->group(function () {
         //user route
         Route::resource('users', UserController::class)->only('show', 'update');
+        
     });
 
     //Student
     Route::middleware(['auth:sanctum', 'studentMiddleware'])->group(function () {
-        //user route
-
+        //subscription route
+        Route::post('/users/{id}/subscriptions', [SubscriptionController::class, 'assignSubscription']);
+        Route::get('/users/{id}/subscriptions', [SubscriptionController::class, 'getSubscription']);
     });
 });
 
