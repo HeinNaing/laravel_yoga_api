@@ -20,7 +20,11 @@ class RoleController extends Controller
      * List all role
      */
     public function index() {
-        $roles = Role::paginate(10);
+        $roles = Role::all();
+
+        if(!$roles) {
+            return $this->errorResponse('Role not found', 404);
+        }
 
         return $this->successResponse('Role retrieved successfully', RoleResource::collection($roles), 200);
     }
