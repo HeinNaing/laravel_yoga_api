@@ -1,15 +1,13 @@
 <?php
 
-use App\Http\Controllers\Dashboard\PaymentController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
-use App\Models\User;
+use App\Http\Controllers\Dashboard\TrainerController;
 use App\Http\Controllers\Dashboard\RoleController;
 use App\Http\Controllers\Dashboard\UserController;
-use App\Http\Controllers\Api\AppointmentController;
-use App\Http\Controllers\Api\TrainerController;
-use App\Http\Controllers\Api\TestimonialController;
+use App\Http\Controllers\Dashboard\AppointmentController;
+use App\Http\Controllers\Dashboard\TestimonialController;
+use App\Http\Controllers\Dashboard\PaymentController;
 
 //Public route
 Route::post('v1/register', [AuthController::class, 'register']);

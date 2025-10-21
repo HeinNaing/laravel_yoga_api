@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -8,7 +8,7 @@ use App\Models\TrainerDetail;
 use App\Models\User;
 
 class TrainerController extends Controller
-{   
+{
     public function index()
     {
         $trainers = TrainerDetail::with('trainer:id,name,email')->get();
@@ -19,7 +19,7 @@ class TrainerController extends Controller
         ]);
     }
 
-  
+
     public function store(Request $request)
     {
         $request->validate([
@@ -39,7 +39,7 @@ class TrainerController extends Controller
         ], 201);
     }
 
-   
+
     public function update(Request $request, $id)
     {
         $trainer = TrainerDetail::find($id);

@@ -1,25 +1,28 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Http\Helpers\ApiResponse;
+use App\Http\Resources\Dashboard\AppointmentResource;
 use App\Models\Appointment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class AppointmentController extends Controller
 {
+    use ApiResponse;
     /**
      * GET /api/appointments
      * List all appointments
      */
     public function index()
     {
-        $appointments = Appointment::with(['student', 'admin', 'trainer'])
+        $appointments = Appointment::with(['member', 'admin', 'trainer'])
             ->orderBy('appointment_date', 'desc')
             ->get();
 
-        return response()->json($appointments, 200);
+        return $this->successResponse(['Appointment retrieved successfully', AppointmentResource::collection($appointments), 200]);
     }
 
     /**
@@ -38,7 +41,7 @@ class AppointmentController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 422);
+            return $this->errorResponse($validator->errors(), 422);
         }
 
         $appointment = Appointment::create([
@@ -52,10 +55,7 @@ class AppointmentController extends Controller
             'is_completed' => false,
         ]);
 
-        return response()->json([
-            'message' => 'Appointment created successfully',
-            'data' => $appointment,
-        ], 201);
+        return $this->successResponse('Appointment created successfully', new AppointmentResource($appointment), 201);
     }
 
     /**
@@ -67,7 +67,7 @@ class AppointmentController extends Controller
         $appointment = Appointment::find($id);
 
         if (!$appointment) {
-            return response()->json(['message' => 'Appointment not found'], 404);
+            return $this->errorResponse('Appointment not found!', 404);
         }
 
         $validator = Validator::make($request->all(), [
@@ -79,18 +79,18 @@ class AppointmentController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 422);
+            return $this->errorResponse($validator->errors(), 422);
         }
 
         $appointment->update($request->only([
-            'appointment_date', 'appointment_fees', 'meet_link',
-            'is_approved', 'is_completed'
+            'appointment_date',
+            'appointment_fees',
+            'meet_link',
+            'is_approved',
+            'is_completed'
         ]));
 
-        return response()->json([
-            'message' => 'Appointment updated successfully',
-            'data' => $appointment,
-        ]);
+        return $this->successResponse('Appointment updated successfully', new AppointmentResource($appointment), 200);
     }
 
     /**
@@ -102,11 +102,11 @@ class AppointmentController extends Controller
         $appointment = Appointment::find($id);
 
         if (!$appointment) {
-            return response()->json(['message' => 'Appointment not found'], 404);
+            return $this->errorResponse('Appointment not found!', 404);
         }
 
         $appointment->delete();
 
-        return response()->json(['message' => 'Appointment deleted successfully']);
+        return $this->successResponse('Appointment deleted successdfully', new AppointmentResource($appointment), 204);
     }
 }

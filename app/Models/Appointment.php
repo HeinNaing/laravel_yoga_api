@@ -27,7 +27,7 @@ class Appointment extends Model
         'is_completed' => 'boolean',
     ];
 
-    public function student()
+    public function member()
     {
         return $this->belongsTo(User::class, 'user_id');
     }

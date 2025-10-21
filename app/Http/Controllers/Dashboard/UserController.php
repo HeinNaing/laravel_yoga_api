@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use App\Http\Helpers\ApiResponse;
 use Laravel\Sanctum\HasApiTokens;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Validator;
@@ -19,7 +18,10 @@ class UserController extends Controller
 {
     use ApiResponse, HasApiTokens, HasFactory, Notifiable;
 
-    //user all list(admin only)
+    /**
+     * GET /api/v1/users
+     * List all user
+     */
     public function index()
     {
         $users = User::with(['role', 'trainerDetails'])->paginate(config('pagination.perPage'));
@@ -27,7 +29,11 @@ class UserController extends Controller
         return $this->successResponse('User retrieved successfully', $this->buildPaginatedResourceResponse(UserResource::class, $users), 200);
     }
 
-    //user create(admin only)
+    /**
+     * POST /api/v1/users
+     * Create new user
+     * Admin only
+     */
     public function store(Request $request)
     {
         $validator = Validator::make(
@@ -83,7 +89,10 @@ class UserController extends Controller
         }
     }
 
-    //user show
+    /**
+     * GET /api/v1/users/{id}
+     * Show user
+     */
     public function show($id)
     {
         $user = User::find($id);
@@ -96,7 +105,10 @@ class UserController extends Controller
         return $this->successResponse('User Fetched Successfully', new UserResource($user), 200);
     }
 
-    //user update
+    /**
+     * PUT /api/v1/users/{id}
+     * Update user
+     */
     public function update(Request $request, $id)
     {
         $user = User::find($id);
@@ -162,6 +174,5 @@ class UserController extends Controller
         } catch (\Exception $e) {
             return $this->errorResponse('User updated failed:' . $e->getMessage(), 500);
         }
-
     }
 }

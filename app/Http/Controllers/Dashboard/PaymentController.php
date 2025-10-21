@@ -16,7 +16,10 @@ class PaymentController extends Controller
 {
     use ApiResponse, HasApiTokens, HasFactory, Notifiable;
 
-    //payment create
+    /**
+     * POST /api/v1/payments
+     * Create new payment
+     */
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -43,7 +46,10 @@ class PaymentController extends Controller
         }
     }
 
-    //payment list
+    /**
+     * GET /api/v1/payments
+     * List all payment
+     */
     public function index()
     {
         $payment = Payment::all();
@@ -51,7 +57,10 @@ class PaymentController extends Controller
         return $this->successResponse('Payment retrieved sucessfully', PaymentResource::collection($payment), 200);
     }
 
-    //payment delete
+    /**
+     * DELETE /api/v1/payments/{id}
+     * Delete payment
+     */
     public function destroy($id)
     {
         $payment = Payment::findOrFail($id);
@@ -65,6 +74,10 @@ class PaymentController extends Controller
         return $this->successResponse('Payment deleted successfully', '', 204);
     }
 
+    /**
+     * PUT /api/v1/payments/{id}
+     * Update payment
+     */
     //payment update
     public function update(Request $request, $id)
     {

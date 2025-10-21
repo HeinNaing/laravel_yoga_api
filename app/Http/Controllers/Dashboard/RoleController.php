@@ -15,6 +15,10 @@ class RoleController extends Controller
 {
     use ApiResponse, HasApiTokens, HasFactory, Notifiable;
 
+    /**
+     * GET /api/v1/roles
+     * List all role
+     */
     public function index() {
         $roles = Role::paginate(10);
 
