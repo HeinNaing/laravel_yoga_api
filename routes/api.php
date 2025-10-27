@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\ForgetPasswordController;
 use App\Http\Controllers\Api\VerifyEmailController;
 use App\Http\Controllers\Client\PaymentHistoryController;
+use App\Http\Controllers\Dashboard\LessonController;
 use App\Http\Controllers\Dashboard\LessonTypeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
@@ -54,6 +55,9 @@ Route::prefix('v1/')->group(function () {
 
         //lesson type route
         Route::resource('/lesson-types', LessonTypeController::class);
+
+        //lesson route
+        Route::resource('/lessons', LessonController::class);
     });
 
     //Trainer
