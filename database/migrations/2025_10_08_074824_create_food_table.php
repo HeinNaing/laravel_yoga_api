@@ -13,15 +13,15 @@ return new class extends Migration
     {
         Schema::create('food', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users');
             $table->string('title');
-            $table->string('slug');
             $table->text('ingredients');
             $table->foreignId('created_by')->constrained('users');
             $table->text('nutrition');
-            $table->text('profile_url');
-            $table->string('profile_public_id');
+            $table->text('image_url');
+            $table->string('image_public_id')->nullable();
             $table->text('description');
-            $table->string('rating');
+            $table->string('rating')->nullable();
             $table->timestamps();
         });
     }

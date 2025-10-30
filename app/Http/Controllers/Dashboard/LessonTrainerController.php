@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\Models\LessonTrainer;
 use Illuminate\Http\Request;
 use App\Models\Lesson;
-use App\Models\Trainer;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Validator;
-use App\Http\Helpers\ApiResponse;
 
 
 
@@ -24,7 +22,7 @@ class LessonTrainerController extends Controller
         ]);
 
         $lesson = Lesson::findOrFail($data['lesson_id']);
-        $trainer = Trainer::findOrFail($data['trainer_id']);
+        $trainer = LessonTrainer::findOrFail($data['trainer_id']);
 
         // Assuming a many-to-many relationship between lessons and trainers
         $lesson->trainers()->attach($trainer);
@@ -38,7 +36,7 @@ class LessonTrainerController extends Controller
     public function unassign(Request $request, $lessonId, $trainerId)
     {
         $lesson = Lesson::findOrFail($lessonId);
-        $trainer = Trainer::findOrFail($trainerId);
+        $trainer = LessonTrainer::findOrFail($trainerId);
 
         $lesson->trainers()->detach($trainer);
 

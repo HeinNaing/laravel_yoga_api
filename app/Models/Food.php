@@ -10,13 +10,13 @@ class Food extends Model
     use HasFactory;
 
     protected $fillable = [
+        'user_id',
         'title',
-        'slug',
         'ingredients',
         'created_by',
         'nutrition',
-        'profile_url',
-        'profile_public_id',
+        'image_url',
+        'image_public_id',
         'description',
         'rating'
     ];

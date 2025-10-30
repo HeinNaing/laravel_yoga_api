@@ -173,7 +173,7 @@ class LessonController extends Controller
      * DELETE /api/v1/lessons/{id}
      * Delete lesson video
      */
-    public function destory($id)
+    public function destroy($id)
     {
         $lesson = Lesson::find($id);
 
@@ -187,6 +187,6 @@ class LessonController extends Controller
 
         $lesson->delete();
 
-        $this->successResponse('Lesson deleted successfully', new LessonResource(null), 204);
+        $this->successResponse('Lesson deleted successfully', null, 204);
     }
 }

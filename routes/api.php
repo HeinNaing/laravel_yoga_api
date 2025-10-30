@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Dashboard\FoodController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\SocialLoginController;
@@ -67,9 +68,11 @@ Route::prefix('v1/')->group(function () {
         //lessontrainer route
         Route::resource('/lesson-trainers', LessonTrainerController::class);
 
-
         //lesson route
         Route::resource('/lessons', LessonController::class);
+
+        //food route
+        Route::resource('/foods', FoodController::class);
     });
 
     //Trainer
