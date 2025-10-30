@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Client\AdminSubscriptionController;
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\SocialLoginController;
@@ -18,6 +18,7 @@ use App\Http\Controllers\Dashboard\TestimonialController;
 use App\Http\Controllers\Dashboard\SubscriptionController;
 use App\Http\Controllers\Client\UserSubscriptionController;
 use App\Http\Controllers\Dashboard\LessonTrainerController;
+use App\Http\Controllers\Dashboard\AdminSubscriptionController;
 
 //aaa
 //Public route
@@ -66,7 +67,7 @@ Route::prefix('v1/')->group(function () {
         Route::resource('subscriptions', SubscriptionController::class);
 
         //subscription user
-        Route::resource('subscription-users', AdminSubscriptionController::class)->only(['index', 'update']);
+        Route::resource('subscription-users', AdminSubscriptionController::class);
 
         //lesson type route
         Route::resource('lesson-types', LessonTypeController::class);
