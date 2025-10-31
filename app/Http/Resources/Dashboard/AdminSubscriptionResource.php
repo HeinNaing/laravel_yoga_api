@@ -17,7 +17,9 @@ class AdminSubscriptionResource extends JsonResource
         return [
             'id' => $this->id,
             'userId' => $this->user_id,
+            'user' => new UserResource($this->whenLoaded('user')),
             'subscriptionId' => $this->subscription_id,
+            'subscription' => new SubscriptionResource($this->whenLoaded('subscription')),
             'status' => $this->status,
             'createdAt' => $this->created_at,
             'updatedAt' => $this->updated_at,

@@ -7,6 +7,7 @@ use App\Models\SubscriptionUser;
 use App\Http\Helpers\ApiResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Dashboard\AdminSubscriptionResource;
+use Illuminate\Http\Resources\Json\PaginatedResourceResponse;
 
 class AdminSubscriptionController extends Controller
 {
@@ -17,9 +18,10 @@ class AdminSubscriptionController extends Controller
      * List all subscription users
      */
     public function index() {
-        $subUser = SubscriptionUser::all();
+        $subUser = SubscriptionUser::with(['user', 'subscription'])
+                ->paginate(config('pagnation.perPage'));
 
-        return $this->successResponse('Successfully', AdminSubscriptionResource::collection($subUser), 200);
+        return $this->successResponse('Successfully', $this->buildPaginatedResourceResponse(AdminSubscriptionResource::class, $subUser), 200);
     }
 
     /**
