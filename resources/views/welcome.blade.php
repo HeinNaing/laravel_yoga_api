@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,19 +8,29 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
         }
+
         .float-animation {
             animation: float 3s ease-in-out infinite;
         }
+
         .gradient-bg {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
     </style>
 </head>
+
 <body class="font-sans antialiased">
-    
+
     <!-- Navigation -->
     <nav class="bg-white shadow-lg fixed w-full z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -36,8 +47,11 @@
                     <a href="#contact" class="text-gray-700 hover:text-green-600 font-medium transition">Contact</a>
                 </div>
                 <div class="flex space-x-4">
-                    <a href="#" class="px-6 py-2 text-green-600 border-2 border-green-600 rounded-full hover:bg-green-600 hover:text-white transition font-semibold">Login</a>
-                    <a href="#" class="px-6 py-2 bg-green-600 text-white rounded-full hover:bg-green-700 transition font-semibold">Sign Up</a>
+                    <a href="#"
+                        class="px-6 py-2 text-green-600 border-2 border-green-600 rounded-full hover:bg-green-600 hover:text-white transition font-semibold">Login</a>
+                    <a href="#"
+                        class="px-6 py-2 bg-green-600 text-white rounded-full hover:bg-green-700 transition font-semibold">Sign
+                        Up</a>
                 </div>
             </div>
         </div>
@@ -52,16 +66,22 @@
                         Unlock Your <span class="text-green-300">Wealth</span> of Health
                     </h1>
                     <p class="text-xl mb-8 text-gray-100">
-                        Transform your body, mind, and spirit at our premium wellness resort. Expert trainers, personalized programs, and luxurious facilities await you.
+                        Transform your body, mind, and spirit at our premium wellness resort. Expert trainers,
+                        personalized programs, and luxurious facilities await you.
                     </p>
                     <div class="flex space-x-4">
-                        <a href="#services" class="px-8 py-4 bg-white text-purple-600 rounded-full hover:bg-gray-100 transition font-bold text-lg shadow-lg">Explore Services</a>
-                        <a href="#contact" class="px-8 py-4 border-2 border-white text-white rounded-full hover:bg-white hover:text-purple-600 transition font-bold text-lg">Book Now</a>
+                        <a href="#services"
+                            class="px-8 py-4 bg-white text-purple-600 rounded-full hover:bg-gray-100 transition font-bold text-lg shadow-lg">Explore
+                            Services</a>
+                        <a href="#contact"
+                            class="px-8 py-4 border-2 border-white text-white rounded-full hover:bg-white hover:text-purple-600 transition font-bold text-lg">Book
+                            Now</a>
                     </div>
                 </div>
                 <div class="flex justify-center">
                     <div class="float-animation">
-                        <img src="{{ asset('images/logo1.png') }}" alt="Unlock Wealth Resort Logo" class="w-80 h-auto drop-shadow-2xl">
+                        <img src="{{ asset('images/logo1.png') }}" alt="Unlock Wealth Resort Logo"
+                            class="w-80 h-auto drop-shadow-2xl">
                     </div>
                 </div>
             </div>
@@ -73,35 +93,43 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <h2 class="text-4xl font-bold text-gray-800 mb-4">About Our Resort</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Where wellness meets luxury in a journey of transformation</p>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Where wellness meets luxury in a journey of
+                    transformation</p>
             </div>
             <div class="grid md:grid-cols-3 gap-8">
                 <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition">
                     <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-6">
                         <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                         </svg>
                     </div>
                     <h3 class="text-2xl font-bold text-gray-800 mb-4">Expert Training</h3>
-                    <p class="text-gray-600">Work with certified professionals who customize programs to your unique goals and fitness level.</p>
+                    <p class="text-gray-600">Work with certified professionals who customize programs to your unique
+                        goals and fitness level.</p>
                 </div>
                 <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition">
                     <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-6">
                         <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4">
+                            </path>
                         </svg>
                     </div>
                     <h3 class="text-2xl font-bold text-gray-800 mb-4">Premium Facilities</h3>
-                    <p class="text-gray-600">State-of-the-art equipment and luxurious amenities designed for optimal wellness and comfort.</p>
+                    <p class="text-gray-600">State-of-the-art equipment and luxurious amenities designed for optimal
+                        wellness and comfort.</p>
                 </div>
                 <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition">
                     <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-6">
                         <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                         </svg>
                     </div>
                     <h3 class="text-2xl font-bold text-gray-800 mb-4">Proven Results</h3>
-                    <p class="text-gray-600">Join thousands of satisfied clients who have achieved their health and wellness goals with us.</p>
+                    <p class="text-gray-600">Join thousands of satisfied clients who have achieved their health and
+                        wellness goals with us.</p>
                 </div>
             </div>
         </div>
@@ -112,7 +140,8 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <h2 class="text-4xl font-bold text-gray-800 mb-4">Our Services</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Comprehensive wellness programs tailored to your needs</p>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Comprehensive wellness programs tailored to your
+                    needs</p>
             </div>
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition">
@@ -173,8 +202,12 @@
             <h2 class="text-4xl font-bold text-gray-800 mb-6">Ready to Transform Your Life?</h2>
             <p class="text-xl text-gray-600 mb-8">Join us today and start your journey to wellness</p>
             <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-                <a href="#" class="px-10 py-4 bg-green-600 text-white rounded-full hover:bg-green-700 transition font-bold text-lg shadow-lg">Get Started</a>
-                <a href="#" class="px-10 py-4 border-2 border-green-600 text-green-600 rounded-full hover:bg-green-600 hover:text-white transition font-bold text-lg">Contact Us</a>
+                <a href="#"
+                    class="px-10 py-4 bg-green-600 text-white rounded-full hover:bg-green-700 transition font-bold text-lg shadow-lg">Get
+                    Started</a>
+                <a href="#"
+                    class="px-10 py-4 border-2 border-green-600 text-green-600 rounded-full hover:bg-green-600 hover:text-white transition font-bold text-lg">Contact
+                    Us</a>
             </div>
         </div>
     </section>
@@ -200,7 +233,8 @@
                     <h4 class="text-lg font-bold mb-4">Services</h4>
                     <ul class="space-y-2">
                         <li><a href="#" class="text-gray-400 hover:text-white transition">Yoga</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white transition">Personal Training</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Personal Training</a>
+                        </li>
                         <li><a href="#" class="text-gray-400 hover:text-white transition">Nutrition</a></li>
                         <li><a href="#" class="text-gray-400 hover:text-white transition">Spa</a></li>
                     </ul>
@@ -222,4 +256,5 @@
     </footer>
 
 </body>
+
 </html>

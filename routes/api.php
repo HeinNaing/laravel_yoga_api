@@ -46,6 +46,9 @@ Route::prefix('v1/')->group(function () {
         //user route
         Route::resource('users', UserController::class);
 
+        //trainer route
+        Route::apiResource('trainers', TrainerController::class);
+
         //role route
         Route::get('roles', [RoleController::class, 'index']);
     });
@@ -57,9 +60,6 @@ Route::prefix('v1/')->group(function () {
 
         //appointment route
         Route::apiResource('appointments', AppointmentController::class)->only('index', 'update', 'destroy');
-
-        //trainer route
-        Route::apiResource('trainers', TrainerController::class);
 
         //subscription
         Route::resource('subscriptions', SubscriptionController::class)->only('store', 'update', 'destroy');
@@ -105,7 +105,7 @@ Route::prefix('v1/')->group(function () {
 
         //testimonials route
         Route::post('testimonials', [ClientTestimonialController::class, 'store']);
-        Route::delete('testimonials/{userId}/{id}', [ClientTestimonialController::class, 'destroy']);
+        Route::delete('testimonials/{id}/delete', [ClientTestimonialController::class, 'destroy']);
 
         //appointment route
         Route::post('users/{id}/appointments/create', [ClientAppointmentController::class, 'create']);

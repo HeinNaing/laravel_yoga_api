@@ -35,12 +35,13 @@ class TestimonialController extends Controller
     }
 
     /**
-     * DELETE /api/v1/testimonials/{userId}/{id}
+     * DELETE /api/v1/testimonials/{id}/delete
      * Delete their own testimonial
      */
-    public function destroy($userId, $id)
+    public function destroy($id)
     {
-        $testimonial = Testimonial::find($id)->where('user_id', $userId);
+        $commentId = $request->testimonialId;
+        $testimonial = Testimonial::find($commentId)->where('user_id', $id);
 
         if (!$testimonial) {
             return $this->errorResponse('Testimonial not found.', 404);
