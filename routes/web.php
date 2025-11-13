@@ -14,5 +14,5 @@ use Illuminate\Support\Facades\Route;
  */
 
 Route::get('/', function () {
-    return view('vendor.l5-swagger.index');
+  return redirect()->route('l5-swagger.default.docs');
 });
