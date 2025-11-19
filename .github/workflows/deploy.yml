@@ -2,22 +2,22 @@ name: Deploy Laravel to AWS EC2
 
 on:
   push:
-    branches: [ "main" ]    # main branch commit push  auto deploy
+    branches: ["main"] # main branch commit push  auto deploy
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-    - name: Deploy to AWS
-      uses: easingthemes/ssh-deploy@main
-      env:
-
-        SSH_PRIVATE-KEY: ${{ secrets.EC2_SSH_KEY }}
-        REPORT_HOST: ${{ secrets.HOST_DNS }}
-        REMOTE_USER: ${{ secrets.USERNAME }}
-        TARGET: ${{ secrets.TARGET_DIR }}
-
+      - name: Deploy via SSH
+        uses: easingthemes/ssh-deploy@main
+        with:
+          sshPrivateKey: ${{ secrets.SSH_PRIVATE_KEY }}
+          remoteHost: ${{ secrets.SSH_HOST }}
+          remoteUser: ${{ secrets.SSH_USER }}
+          remotePort: "22" # optional, default is 22
+          source: "./" # what to upload
+          target: ${{ secrets.TARGET_DIR }}
