@@ -31,7 +31,7 @@ jobs:
         with:
           host: ${{ secrets.HOST_DNS }}
           port: 22
-          username: root
+          username: ubuntu
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             echo "Deploying to PRODUCTION server..."
