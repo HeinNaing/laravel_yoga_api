@@ -9,62 +9,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # 1. Get source code
     - name: Checkout repository
       uses: actions/checkout@v3
 
-    # 2. Setup PHP environment
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: '8.2'
-        extensions: mbstring, xml, bcmath, curl, zip, intl
-        tools: composer
+    - name: Deploy to AWS
+      uses: easingthemes/ssh-deploy@main
+      env: 
 
-    # 3. Install dependencies in GitHub runner (faster)
-    - name: Install Composer Dependencies
-      run: composer install --no-dev --prefer-dist --no-interaction --optimize-autoloader
-
-    # 4. Upload build files from GitHub  EC2 (via SCP)
-    - name: Upload project to EC2
-      uses: appleboy/scp-action@v0.1.4
-      with:
-        host: ${{ secrets.EC2_HOST }}
-        username: ${{ secrets.EC2_USER }}
-        key: ${{ secrets.EC2_KEY }}
-        source: "./"
-        target: "${{ secrets.EC2_PATH }}"
-        rm: true   # EC2 old files remove
-
-    # 5. Run remote commands inside EC2
-    - name: Run SSH commands on EC2
-      uses: appleboy/ssh-action@v0.1.8
-      with:
-        host: ${{ secrets.EC2_HOST }}
-        username: ${{ secrets.EC2_USER }}
-        key: ${{ secrets.EC2_KEY }}
-        script: |
-          cd ${{ secrets.EC2_PATH }}
-
-          echo " Setting correct permissions"
-          sudo chown -R www-data:www-data storage bootstrap/cache
-          sudo chmod -R 775 storage bootstrap/cache
-
-          echo " Running Composer dependencies (production mode)"
-          composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
-
-          echo " Running Laravel optimization"
-          php artisan config:clear
-          php artisan cache:clear
-          php artisan route:clear
-          php artisan view:clear
-          php artisan optimize
-
-          echo " Running database migrations"
-          php artisan migrate --force
-
-          echo " Restarting Services"
-          sudo systemctl restart php8.2-fpm
-          sudo systemctl restart nginx
-
-          echo " Deployment Finished Successfully!"
+        SSH_PRIVATE-KEY: ${{ secrets.EC2_SSH_KEY }}
+        REPORT_HOST: ${{ secrets.HOST_DNS }}
+        REMOTE_USER: ${{ secrets.USERNAME }}
+        TARGET: ${{ secrets.TARGET_DIR }}
+        
