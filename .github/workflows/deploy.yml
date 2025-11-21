@@ -38,6 +38,6 @@ jobs:
             cd /var/www/laravel_yoga_api
             git pull origin main
             composer install --no-interaction --prefer-dist --optimize-autoloader
-            sudo chown -R www-data:www-data storage bootstrap/cache
-            sudo chmod -R 775 storage bootstrap/cache
+            sudo chown -R www-data:www-data storage /var/www/laravel_yoga_api/bootstrap/cache
+            sudo chmod -R 775 storage /var/www/laravel_yoga_api/bootstrap/cache
             php artisan optimize
